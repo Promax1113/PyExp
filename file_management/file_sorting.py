@@ -22,7 +22,7 @@ def sort_date(dir):
 
     os.chdir(dir)
     for date in file_dates:
-        pathlib.Path.mkdir((f"{date}/"), exist_ok=True)
+        pathlib.Path.mkdir(date, exist_ok=True)
 
     for file in files:
         os.rename(file, f"{dir}/{pathlib.Path(datetime.fromtimestamp(os.path.getctime(f"{dir}/{file}")).strftime("%d-%m-%Y"))}/{file}")
