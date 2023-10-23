@@ -7,6 +7,8 @@ def sort_files(dir, mode):
         sort_type(dir)
     elif mode == "date":
         sort_date(dir)
+    else:
+        raise NameError("Mode was not found!")
 
 def sort_date(dir):
     c_dir = os.getcwd()
@@ -25,7 +27,7 @@ def sort_date(dir):
         pathlib.Path.mkdir(date, exist_ok=True)
 
     for file in files:
-        os.rename(file, f"{dir}/{pathlib.Path(datetime.fromtimestamp(os.path.getctime(f"{dir}/{file}")).strftime("%d-%m-%Y"))}/{file}")
+        os.rename(file, f"{dir}/{pathlib.Path(datetime.fromtimestamp(os.path.getctime(f'{dir}/{file}')).strftime('%d-%m-%Y'))}/{file}")
     os.chdir(c_dir)
 
 def sort_type(dir):
