@@ -1,7 +1,14 @@
 import os, pathlib, shutil
 
-def create_file(dir):
-    pass
+def create(dir: pathlib.Path, filename: str = None):
+    try:
+        if filename:
+            file = open(f"{dir}/{filename}", "x")
+            file.close()
+        elif not filename:
+            pathlib.Path.mkdir(dir)
+    except FileExistsError:
+        print("File already exists.")
 
 def delete(dir: pathlib.Path, filename: str = None):
     try:
