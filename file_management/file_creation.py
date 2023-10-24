@@ -1,6 +1,6 @@
 import os, pathlib, shutil
 
-def create(dir: pathlib.Path, filename: str = None):
+def create(dir, filename = None):
     try:
         if filename:
             file = open(f"{dir}/{filename}", "x")
@@ -10,7 +10,7 @@ def create(dir: pathlib.Path, filename: str = None):
     except FileExistsError:
         print("File already exists.")
 
-def delete(dir: pathlib.Path, filename: str = None):
+def delete(dir, filename = None):
     try:
         if filename:
             os.remove(f"{dir}/{filename}")
@@ -23,3 +23,12 @@ def delete(dir: pathlib.Path, filename: str = None):
     
     except FileNotFoundError:
         print("File was not found!")
+
+def move(dir, new_dir, filename = None):
+    try:
+        if not filename:
+            shutil.move(dir, new_dir)
+        else:
+            os.rename(f"{dir}/{filename}", f"{new_dir}/{filename}")
+    except (FileNotFoundError, FileExistsError):
+        print("Either file does not exist or there's a file with the same name already in destination!")
