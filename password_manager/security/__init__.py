@@ -1,0 +1,1 @@
+from .password_check import get_pass
